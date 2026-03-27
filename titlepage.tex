@@ -1,0 +1,66 @@
+% The Seven-Layer Magic Trick — Midnight Network Branded Title Page
+% Design: Midnight Dark Mode
+
+\begin{titlepage}
+\newgeometry{margin=1in}
+
+% Background is handled by the global shipout hook (MidnightBg)
+
+% Top gradient rule — 3pt blue-to-purple, full width
+\noindent\midnightgradientrule{1}{3pt}
+
+\vspace{3cm}
+
+\begin{center}
+
+% Midnight logo — text-based rendering
+% (SVG logo available in assets/ for future vector inclusion)
+{\fontsize{28pt}{34pt}\selectfont\sffamily\bfseries\color{MidnightWhite}%
+\textls[100]{MIDNIGHT}}
+
+\vspace{2cm}
+
+% Main title — large, bold, white
+{\fontsize{32pt}{38pt}\selectfont\sffamily\color{MidnightWhite}%
+\textbf{The Seven-Layer\\Magic Trick}}
+
+\vspace{1cm}
+
+% Subtitle — medium, muted
+{\fontsize{14pt}{20pt}\selectfont\sffamily\color{MidnightMuted}%
+A Complete Guide to\\
+Zero-Knowledge Proof Systems}
+
+\vspace{1.2cm}
+
+% Decorative gradient rule — 40% width
+\midnightgradientrule{0.4}{1.5pt}
+
+\vspace{0.3cm}
+
+% Edition label — letterspaced, grey
+{\fontsize{9pt}{12pt}\selectfont\sffamily\color{MidnightGrey}%
+\textls[150]{FIRST EDITION}}
+
+\vspace{0.8cm}
+
+% Author
+{\fontsize{14pt}{18pt}\selectfont\sffamily\color{MidnightText}%
+Charles Hoskinson}
+
+\vspace{0.8cm}
+
+% Date
+{\fontsize{12pt}{16pt}\selectfont\sffamily\color{MidnightMuted}%
+March 2026}
+
+\vspace{1.5cm}
+
+% Organization name — letterspaced
+{\fontsize{10pt}{14pt}\selectfont\sffamily\color{MidnightGrey}%
+\textls[200]{MIDNIGHT NETWORK}}
+
+\end{center}
+
+\restoregeometry
+\end{titlepage}

@@ -1,0 +1,415 @@
+% ═══════════════════════════════════════════════════════════════════════════
+%  The Seven-Layer Magic Trick — LaTeX Preamble
+%  Design: "Midnight Network" — Dark-Mode Identity
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ── Section Numbering ────────────────────────────────────────────────────
+% Number chapters (0) and sections (1) in the TOC and body text.
+% Subsections (2) are unnumbered. This matches --number-sections in pandoc.
+\setcounter{secnumdepth}{2}
+
+% ── Packages ─────────────────────────────────────────────────────────────
+% microtype may already be loaded by pandoc; pass options safely
+\PassOptionsToPackage{protrusion=true,tracking=true}{microtype}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{longtable,booktabs,array}
+\usepackage{colortbl}
+\usepackage[most]{tcolorbox}
+\usepackage{etoolbox}
+\usepackage{lettrine}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{needspace}
+
+% ── Font Setup (Outfit from project assets) ─────────────────────────────
+% Outfit is loaded from the assets/ directory so it works without
+% system-wide font installation. fontspec is loaded by pandoc; we
+% override the sansfont here with an explicit path.
+\AtBeginDocument{%
+  \setsansfont{Outfit}[
+    Path = assets/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    FontFace = {sb}{n}{*-SemiBold},
+    FontFace = {m}{n}{*-Medium},
+  ]%
+}
+
+% ── Micro-typography ─────────────────────────────────────────────────────
+\frenchspacing
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+\hyphenpenalty=300
+\exhyphenpenalty=300
+\tolerance=1414
+\hbadness=1414
+\emergencystretch=2em
+\hfuzz=0.3pt
+\setlength{\parskip}{2pt plus 1pt minus 0.5pt}
+
+% Lettrine defaults
+\setcounter{DefaultLines}{3}
+\renewcommand{\DefaultLoversize}{0.1}
+\renewcommand{\DefaultLhang}{0}
+\setlength{\DefaultFindent}{3pt}
+\setlength{\DefaultNindent}{0pt}
+
+% Table spacing
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  COLOR DEFINITIONS — Midnight Dark Mode
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Print mode toggle (documented, not active)
+\newif\ifprintmode
+\printmodefalse
+
+% ── Brand Colors ───────────────────────────────────────────────────────
+\definecolor{MidnightBg}{HTML}{0b0e1a}
+\definecolor{MidnightText}{HTML}{DEDEDE}        % 87% white (Material "high emphasis")
+\definecolor{MidnightBold}{HTML}{F5F5F5}       % 95% white (bold brightness delta)
+\definecolor{MidnightWhite}{HTML}{ffffff}
+\definecolor{MidnightHeaderBg}{HTML}{1e2236}   % Table header row background
+\definecolor{MidnightBlue}{HTML}{0000fe}
+\definecolor{MidnightPurple}{HTML}{8756ff}
+\definecolor{MidnightMuted}{HTML}{a0a4b8}
+\definecolor{MidnightSurface}{HTML}{141726}
+\definecolor{MidnightBorder}{HTML}{252940}
+\definecolor{MidnightGrey}{HTML}{6b7084}
+\definecolor{MidnightStripe}{HTML}{101320}
+\definecolor{MidnightCode}{HTML}{181c2e}
+
+% ── Semantic Box Colors ────────────────────────────────────────────────
+\definecolor{BoxTechnical}{HTML}{3b82f6}
+\definecolor{BoxTechnicalBg}{HTML}{0f1a2e}
+\definecolor{BoxInsight}{HTML}{8756ff}
+\definecolor{BoxInsightBg}{HTML}{150f2e}
+\definecolor{BoxCaution}{HTML}{f59e0b}
+\definecolor{BoxCautionBg}{HTML}{1a160e}
+\definecolor{BoxExample}{HTML}{0000fe}
+\definecolor{BoxExampleBg}{HTML}{0f0e20}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  DARK PAGE BACKGROUND
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Paint every page dark.
+% \pagecolor ensures even blank/empty pages (from \clearpage) are dark.
+% The TikZ hook provides a second layer for reliable coverage.
+\pagecolor{MidnightBg}
+\AddToHook{shipout/background}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[MidnightBg] (current page.south west) rectangle (current page.north east);
+  \end{tikzpicture}%
+}
+\AtBeginDocument{\color{MidnightText}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  GRADIENT RULE HELPER
+% ═══════════════════════════════════════════════════════════════════════════
+
+\newcommand{\midnightgradientrule}[2]{% #1=width fraction, #2=height
+  \begin{tikzpicture}
+    \shade[left color=MidnightBlue, right color=MidnightPurple]
+      (0,0) rectangle (#1\textwidth, #2);
+  \end{tikzpicture}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  HEADING HIERARCHY
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Chapter (H1): Gradient rule above + border rule + large bold white title
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily}
+  {}
+  {0pt}
+  {\vspace*{-20pt}%
+   \midnightgradientrule{1}{3pt}\\[8pt]%
+   {\color{MidnightBorder}\rule{\textwidth}{0.5pt}}\\[2.5cm]%
+   \fontsize{32pt}{38pt}\selectfont\bfseries\color{MidnightWhite}}
+\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+
+% Section (H2): Centered bold sans, section number in blue, blue underrule
+\titleformat{\section}[block]
+  {\needspace{5\baselineskip}\normalfont\sffamily\fontsize{16pt}{20pt}\selectfont\bfseries\filcenter\color{MidnightWhite}}
+  {{\color{MidnightBlue}\thesection}\enspace}
+  {0pt}
+  {}
+  [\vspace{2pt}{\color{MidnightBlue}\titlerule[0.75pt]}]
+\titlespacing*{\section}{0pt}{36pt plus 6pt minus 4pt}{12pt plus 2pt}
+
+% Subsection (H3): Centered bold sans, muted
+\titleformat{\subsection}[block]
+  {\needspace{4\baselineskip}\normalfont\sffamily\fontsize{13pt}{17pt}\selectfont\bfseries\filcenter\color{MidnightMuted}}
+  {\thesubsection\enspace}
+  {0pt}
+  {}
+\titlespacing*{\subsection}{0pt}{18pt plus 3pt minus 1pt}{6pt plus 1pt}
+
+% Sub-subsection (H4): Bold italic sans, muted
+\titleformat{\subsubsection}
+  {\needspace{3\baselineskip}\normalfont\sffamily\fontsize{11pt}{15pt}\selectfont\bfseries\itshape\color{MidnightMuted}}
+  {}
+  {0pt}
+  {}
+\titlespacing*{\subsubsection}{0pt}{14pt plus 2pt minus 1pt}{4pt plus 1pt}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  PART DIVIDER
+% ═══════════════════════════════════════════════════════════════════════════
+
+\newcommand{\partdivider}[1]{%
+  \clearpage\thispagestyle{empty}%
+  \vspace*{\fill}%
+  \begin{center}
+  \midnightgradientrule{0.4}{3pt}\\[2cm]
+  {\fontsize{28pt}{34pt}\selectfont\sffamily\bfseries\color{MidnightWhite}#1}\\[2cm]
+  \midnightgradientrule{0.4}{3pt}
+  \end{center}
+  \vspace*{\fill}\clearpage
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  TABLE OF CONTENTS STYLING
+% ═══════════════════════════════════════════════════════════════════════════
+
+\titlecontents{chapter}
+  [0pt]
+  {\addvspace{12pt}\bfseries\large\sffamily\color{MidnightBlue}}
+  {}
+  {}
+  {\titlerule*[8pt]{}\contentspage}
+  [\addvspace{2pt}]
+
+\titlecontents{section}
+  [18pt]
+  {\addvspace{2pt}\normalsize\sffamily\color{MidnightText}}
+  {{\color{MidnightBlue}\thecontentslabel}\enspace}
+  {}
+  {{\color{MidnightGrey}\titlerule*[8pt]{.}}\contentspage}
+
+\titlecontents{subsection}
+  [36pt]
+  {\small\color{MidnightGrey}}
+  {\thecontentslabel\enspace}
+  {}
+  {\titlerule*[8pt]{.}\contentspage}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  RUNNING HEADERS & FOOTERS
+% ═══════════════════════════════════════════════════════════════════════════
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{MidnightGrey}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\sffamily\color{MidnightGrey}\thepage}
+\fancyfoot[C]{\scriptsize\color{MidnightGrey}\textnormal{Midnight Network}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{MidnightBlue}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+% Plain pages (chapter openings): just page number
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\small\sffamily\color{MidnightGrey}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  TABLE STYLING
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Alternating row colors (applies to longtable)
+\AtBeginEnvironment{longtable}{%
+  \rowcolors{2}{MidnightBg}{MidnightStripe}%
+  \arrayrulecolor{MidnightBorder}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  BULLET LIST STYLING
+% ═══════════════════════════════════════════════════════════════════════════
+
+\setlist[itemize,1]{label={\color{MidnightBlue}\textbullet}, itemsep=3pt, parsep=1pt}
+\setlist[itemize,2]{label={\color{MidnightPurple}\textendash}, itemsep=2pt, parsep=0pt}
+\setlist[itemize,3]{label={\color{MidnightGrey}\textperiodcentered}, itemsep=1pt, parsep=0pt}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  PULL QUOTE & EPIGRAPH
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Pull quote command
+\newcommand{\pullquote}[1]{%
+  \par\vspace{18pt}%
+  \begin{center}
+  \begin{minipage}{0.75\textwidth}
+  \centering
+  \midnightgradientrule{0.15}{1.5pt}\\[8pt]
+  {\fontsize{14pt}{20pt}\selectfont\itshape\color{MidnightPurple} #1}\\[8pt]
+  \midnightgradientrule{0.15}{1.5pt}
+  \end{minipage}
+  \end{center}
+  \par\vspace{18pt}%
+}
+
+% Epigraph command for chapter-opening quotes
+\newcommand{\zkepigraph}[2]{%
+  \vspace{6pt}%
+  \begin{center}
+  \begin{minipage}{0.78\textwidth}
+  \raggedleft
+  {\fontsize{11pt}{16pt}\selectfont\itshape\color{MidnightMuted}#1}\\[4pt]
+  {\footnotesize\color{MidnightGrey}--- #2}
+  \end{minipage}
+  \end{center}
+  \vspace{12pt}%
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  CONTENT-TYPE BOXES (tcolorbox)
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Technical Detail box
+\newtcolorbox{technicalbox}[1][Technical Detail]{%
+  enhanced,
+  breakable,
+  colback=BoxTechnicalBg,
+  colframe=BoxTechnical,
+  coltext=MidnightText,
+  fonttitle=\sffamily\bfseries\small,
+  title={#1},
+  coltitle=white,
+  leftrule=4pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+  arc=0pt,
+  outer arc=0pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={colback=BoxTechnical, arc=2pt, boxrule=0pt},
+}
+
+% Insight box (replaces patientbox)
+\newtcolorbox{insightbox}[1][Key Insight]{%
+  enhanced,
+  breakable,
+  colback=BoxInsightBg,
+  colframe=BoxInsight,
+  coltext=MidnightText,
+  fonttitle=\sffamily\bfseries\small,
+  title={#1},
+  coltitle=white,
+  leftrule=4pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+  arc=0pt,
+  outer arc=0pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={colback=BoxInsight, arc=2pt, boxrule=0pt},
+}
+
+% Caution box
+\newtcolorbox{cautionbox}[1][Important Caveat]{%
+  enhanced,
+  breakable,
+  colback=BoxCautionBg,
+  colframe=BoxCaution,
+  coltext=MidnightText,
+  fonttitle=\sffamily\bfseries\small,
+  title={#1},
+  coltitle=MidnightBg,
+  leftrule=4pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+  arc=0pt,
+  outer arc=0pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={colback=BoxCaution, arc=2pt, boxrule=0pt},
+}
+
+% Example box (replaces regulatorybox)
+\newtcolorbox{examplebox}[1][Example]{%
+  enhanced,
+  breakable,
+  colback=BoxExampleBg,
+  colframe=BoxExample,
+  coltext=MidnightText,
+  fonttitle=\sffamily\bfseries\small,
+  title={#1},
+  coltitle=white,
+  leftrule=4pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+  arc=0pt,
+  outer arc=0pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={colback=BoxExample, arc=2pt, boxrule=0pt},
+}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  MATH CONVENIENCES
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Display math spacing (generous for dark backgrounds)
+\setlength{\abovedisplayskip}{13pt plus 3pt minus 3pt}
+\setlength{\belowdisplayskip}{13pt plus 3pt minus 3pt}
+\setlength{\abovedisplayshortskip}{7pt plus 3pt}
+\setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  BOLD TEXT — Brightness delta for dark-mode emphasis
+% ═══════════════════════════════════════════════════════════════════════════
+
+% On dark backgrounds, bold at the same color as body text is barely visible.
+% Material Design / Apple HIG / GitHub Primer all use a brightness delta:
+% body at 87% white, bold at 95% white. Color is reserved for interactive elements.
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{{\bfseries\color{MidnightBold}#1}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  CODE BLOCKS — Styled container for pandoc's Shaded environment
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Pandoc generates \begin{Shaded}\begin{Highlighting}...\end{Highlighting}\end{Shaded}
+% for fenced code blocks. We override Shaded with a styled tcolorbox.
+\renewenvironment{Shaded}{%
+  \begin{tcolorbox}[
+    colback=MidnightCode,
+    colframe=MidnightBorder,
+    arc=4pt,
+    boxrule=0.5pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    breakable, enhanced
+  ]%
+}{\end{tcolorbox}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  HYPERLINKS (deferred — hyperref is loaded later by pandoc)
+% ═══════════════════════════════════════════════════════════════════════════
+
+\AtBeginDocument{%
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=MidnightPurple,
+    urlcolor=MidnightPurple,
+    citecolor=MidnightPurple,
+  }%
+}

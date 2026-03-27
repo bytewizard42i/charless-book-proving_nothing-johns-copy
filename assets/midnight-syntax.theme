@@ -1,0 +1,258 @@
+{
+    "metadata": {
+        "name": "Midnight Network",
+        "revision": 1,
+        "author": "Midnight Network",
+        "license": "MIT",
+        "description": "Custom dark syntax highlighting for the ZK book. Designed for #181c2e backgrounds with WCAG AA+ contrast on all tokens. Brand-aligned: keyword=periwinkle (from #0000fe), type=lavender (from #8756ff)."
+    },
+    "text-styles": {
+        "Normal": {
+            "text-color": "#c8ccd8",
+            "selected-text-color": "#c8ccd8",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Keyword": {
+            "text-color": "#9da5ff",
+            "selected-text-color": "#9da5ff",
+            "bold": true,
+            "italic": false,
+            "underline": false
+        },
+        "Function": {
+            "text-color": "#7ec8e3",
+            "selected-text-color": "#7ec8e3",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Variable": {
+            "text-color": "#c8ccd8",
+            "selected-text-color": "#c8ccd8",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "ControlFlow": {
+            "text-color": "#9da5ff",
+            "selected-text-color": "#9da5ff",
+            "bold": true,
+            "italic": false,
+            "underline": false
+        },
+        "Operator": {
+            "text-color": "#c8ccd8",
+            "selected-text-color": "#c8ccd8",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "BuiltIn": {
+            "text-color": "#7ec8e3",
+            "selected-text-color": "#7ec8e3",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Extension": {
+            "text-color": "#7ec8e3",
+            "selected-text-color": "#7ec8e3",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Preprocessor": {
+            "text-color": "#9da5ff",
+            "selected-text-color": "#9da5ff",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Attribute": {
+            "text-color": "#bf98ff",
+            "selected-text-color": "#bf98ff",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "DataType": {
+            "text-color": "#bf98ff",
+            "selected-text-color": "#bf98ff",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "DecVal": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "BaseN": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Float": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Constant": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Char": {
+            "text-color": "#a8d4a0",
+            "selected-text-color": "#a8d4a0",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "SpecialChar": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "String": {
+            "text-color": "#a8d4a0",
+            "selected-text-color": "#a8d4a0",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "VerbatimString": {
+            "text-color": "#a8d4a0",
+            "selected-text-color": "#a8d4a0",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "SpecialString": {
+            "text-color": "#a8d4a0",
+            "selected-text-color": "#a8d4a0",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Import": {
+            "text-color": "#a8d4a0",
+            "selected-text-color": "#a8d4a0",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Comment": {
+            "text-color": "#808a9e",
+            "selected-text-color": "#808a9e",
+            "bold": false,
+            "italic": true,
+            "underline": false
+        },
+        "Documentation": {
+            "text-color": "#808a9e",
+            "selected-text-color": "#808a9e",
+            "bold": false,
+            "italic": true,
+            "underline": false
+        },
+        "Annotation": {
+            "text-color": "#808a9e",
+            "selected-text-color": "#808a9e",
+            "bold": false,
+            "italic": true,
+            "underline": false
+        },
+        "CommentVar": {
+            "text-color": "#808a9e",
+            "selected-text-color": "#808a9e",
+            "bold": false,
+            "italic": true,
+            "underline": false
+        },
+        "Other": {
+            "text-color": "#7ec8e3",
+            "selected-text-color": "#7ec8e3",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Alert": {
+            "text-color": "#ff8a8a",
+            "selected-text-color": "#ff8a8a",
+            "bold": true,
+            "italic": false,
+            "underline": false
+        },
+        "Error": {
+            "text-color": "#ff8a8a",
+            "selected-text-color": "#ff8a8a",
+            "bold": true,
+            "italic": false,
+            "underline": false
+        },
+        "RegionMarker": {
+            "text-color": "#808a9e",
+            "selected-text-color": "#808a9e",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Information": {
+            "text-color": "#7ec8e3",
+            "selected-text-color": "#7ec8e3",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "Warning": {
+            "text-color": "#e8a86d",
+            "selected-text-color": "#e8a86d",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        }
+    },
+    "editor-colors": {
+        "background-color": "#181c2e",
+        "code-folding": "#1e2336",
+        "bracket-matching": "#2a3050",
+        "current-line": "#1e2336",
+        "icon-border": "#181c2e",
+        "indentation-line": "#2a3050",
+        "line-numbers": "#4a5068",
+        "current-line-number": "#808a9e",
+        "mark-bookmark": "#9da5ff",
+        "mark-breakpoint-active": "#ff8a8a",
+        "mark-breakpoint-reached": "#a8d4a0",
+        "mark-breakpoint-disabled": "#808a9e",
+        "mark-execution": "#e8a86d",
+        "mark-warning": "#e8a86d",
+        "mark-error": "#ff8a8a",
+        "modified-lines": "#e8a86d",
+        "replace-highlight": "#e8a86d",
+        "saved-lines": "#a8d4a0",
+        "search-highlight": "#2a3050",
+        "selection": "#2a3050",
+        "separator": "#2a3050",
+        "spell-checking": "#ff8a8a",
+        "tab-marker": "#2a3050",
+        "template-background": "#1e2336",
+        "template-placeholder": "#1e2336",
+        "template-focused-placeholder": "#2a3050",
+        "template-read-only-placeholder": "#1e2336",
+        "word-wrap-marker": "#2a3050"
+    }
+}
