@@ -1,4 +1,4 @@
-# John's Learnings & Analysis — The Seven-Layer Magic Trick
+# johnny5i's Learnings & Analysis — The Seven-Layer Magic Trick
 
 **Reviewer**: John Santi (with Penny)  
 **Credentials**: Midnight NightForce Bravo | Midnight Academy Triple Certified | Cardano Certified Blockchain Associate | Emurgo Certified Blockchain Business Consultant | Midnight Ambassador | Midnight Aliit (inactive)  
